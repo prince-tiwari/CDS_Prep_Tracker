@@ -40,4 +40,4 @@ This project is actively configured for static hosting and can be seamlessly com
 
 This tool was initially forged for personal tracking but is now shared for the larger welfare of the defense aspirant community. If you have updates for the syllabus structure, tactical layout optimizations, or extra motivational features, feel free to fork the repository and submit a Pull Request!
 
-**Hold the line. Earn the uniform.** 🇮🇳
+**Hold the line. Earn the uniform.**
