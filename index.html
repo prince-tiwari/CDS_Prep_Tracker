@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDS 2026 (IMA) — 60 Day Operations Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ TOP COMMAND BAR ============ -->
+<header class="cmd-bar">
+  <div class="cmd-bar__inner">
+    <div class="cmd-brand">
+      <span class="cmd-brand__star">★</span>
+      <div>
+        <div class="cmd-brand__title">CDS 2026 <span class="cmd-brand__sub">(IMA)</span></div>
+        <div class="cmd-brand__tagline">60-Day Operations Planner</div>
+      </div>
+    </div>
+    <nav class="cmd-nav" id="cmdNav">
+      <button class="cmd-nav__btn is-active" data-target="dashboard">Dashboard</button>
+      <button class="cmd-nav__btn" data-target="planner">Calendar</button>
+      <button class="cmd-nav__btn" data-target="habits">Habits</button>
+      <button class="cmd-nav__btn" data-target="mocks">Mock Tests</button>
+      <button class="cmd-nav__btn" data-target="notes">Notes</button>
+      <button class="cmd-nav__btn" data-target="stats">Statistics</button>
+    </nav>
+    <div class="cmd-countdown">
+      <span class="cmd-countdown__num" id="daysLeftMini">--</span>
+      <span class="cmd-countdown__label">days to exam</span>
+    </div>
+  </div>
+</header>
+
+<main class="hull">
+
+  <!-- ============ SECTION: DASHBOARD ============ -->
+  <section class="panel" id="dashboard">
+
+    <div class="briefing">
+      <div class="briefing__left">
+        <p class="eyebrow">Mission Briefing</p>
+        <h1 class="briefing__title">Target Score <span class="goldnum">200+</span></h1>
+        <p class="briefing__sub">Selection into IMA is earned in fixed daily increments — not in a single sitting. Hold the line.</p>
+        <div class="briefing__chips">
+          <span class="chip">Mathematics</span>
+          <span class="chip">English</span>
+          <span class="chip">General Knowledge</span>
+          <span class="chip chip--gold">5–6 hrs / day</span>
+        </div>
+      </div>
+      <div class="briefing__right">
+        <div class="countdown-card">
+          <label class="countdown-card__label">Set Exam Date</label>
+          <input type="date" id="examDateInput" class="countdown-card__input">
+          <div class="countdown-card__display">
+            <span class="countdown-card__num" id="daysLeft">--</span>
+            <span class="countdown-card__unit">Days Remaining</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-stats">
+      <div class="stat-card stat-card--wide">
+        <div class="stat-card__head">
+          <span class="stat-card__label">Overall Mission Progress</span>
+          <span class="stat-card__value" id="overallPct">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill progress-fill--gold" id="overallFill" style="width:0%"></div></div>
+        <div class="stat-card__foot" id="overallFoot">0 / 0 objectives complete</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__head"><span class="stat-card__label">🔥 Study Streak</span></div>
+        <div class="stat-card__big" id="streakNum">0</div>
+        <div class="stat-card__foot">consecutive days logged</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card__head"><span class="stat-card__label">Daily Target</span></div>
+        <div class="stat-card__big">5–6</div>
+        <div class="stat-card__foot">hours of focused study</div>
+      </div>
+    </div>
+
+    <div class="grid-subjects">
+      <div class="subj-card subj-card--maths">
+        <div class="subj-card__icon">∑</div>
+        <div class="subj-card__name">Mathematics</div>
+        <div class="progress-track"><div class="progress-fill" id="mathsFill" style="width:0%"></div></div>
+        <div class="subj-card__pct" id="mathsPct">0%</div>
+      </div>
+      <div class="subj-card subj-card--english">
+        <div class="subj-card__icon">Aa</div>
+        <div class="subj-card__name">English</div>
+        <div class="progress-track"><div class="progress-fill" id="englishFill" style="width:0%"></div></div>
+        <div class="subj-card__pct" id="englishPct">0%</div>
+      </div>
+      <div class="subj-card subj-card--gk">
+        <div class="subj-card__icon">🌐</div>
+        <div class="subj-card__name">General Knowledge</div>
+        <div class="progress-track"><div class="progress-fill" id="gkFill" style="width:0%"></div></div>
+        <div class="subj-card__pct" id="gkPct">0%</div>
+      </div>
+    </div>
+
+    <div class="quote-strip">
+      <span class="quote-strip__mark">“</span>
+      <span id="quoteText">Discipline today, leadership tomorrow.</span>
+      <button class="quote-strip__btn" id="newQuoteBtn" title="New quote">⟳</button>
+    </div>
+  </section>
+
+  <!-- ============ SECTION: CALENDAR PLANNER ============ -->
+  <section class="panel is-hidden" id="planner">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Field Calendar</p>
+        <h2 class="panel-head__title">60-Day Syllabus Planner</h2>
+      </div>
+      <div class="panel-head__legend">
+        <span class="legend-dot legend-dot--maths"></span> Maths
+        <span class="legend-dot legend-dot--english"></span> English
+        <span class="legend-dot legend-dot--gk"></span> GK
+      </div>
+    </div>
+    <div id="weeksContainer"></div>
+  </section>
+
+  <!-- ============ SECTION: HABITS ============ -->
+  <section class="panel is-hidden" id="habits">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Daily Discipline</p>
+        <h2 class="panel-head__title">Habit Tracker</h2>
+      </div>
+    </div>
+    <div class="habit-table-wrap">
+      <table class="habit-table" id="habitTable"></table>
+    </div>
+  </section>
+
+  <!-- ============ SECTION: MOCK TESTS ============ -->
+  <section class="panel is-hidden" id="mocks">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Live Fire Exercise</p>
+        <h2 class="panel-head__title">Mock Test Tracker</h2>
+      </div>
+    </div>
+
+    <div class="grid-stats grid-stats--mocks">
+      <div class="stat-card"><div class="stat-card__label">Mocks Completed</div><div class="stat-card__big" id="mockCount">0</div></div>
+      <div class="stat-card"><div class="stat-card__label">Best Score</div><div class="stat-card__big" id="mockBest">--</div></div>
+      <div class="stat-card"><div class="stat-card__label">Average Score</div><div class="stat-card__big" id="mockAvg">--</div></div>
+    </div>
+
+    <form class="mock-form" id="mockForm">
+      <input type="text" id="mockNumber" placeholder="Mock No. (e.g. Mock 1)" required>
+      <input type="date" id="mockDate" required>
+      <input type="number" id="mockScore" placeholder="Score (out of 300)" min="0" max="300" required>
+      <button type="submit" class="btn btn--gold">Log Mock</button>
+    </form>
+
+    <div class="mock-table-wrap">
+      <table class="mock-table">
+        <thead><tr><th>Mock</th><th>Date</th><th>Score</th><th>/ 300</th><th></th></tr></thead>
+        <tbody id="mockTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ SECTION: NOTES ============ -->
+  <section class="panel is-hidden" id="notes">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Field Notebook</p>
+        <h2 class="panel-head__title">Notes &amp; Quick Reference</h2>
+      </div>
+      <span class="autosave-badge" id="notesSavedBadge">Saved</span>
+    </div>
+    <div class="notes-grid">
+      <div class="note-block">
+        <h3>📐 Important Formulas</h3>
+        <textarea data-note="formulas" placeholder="e.g. Compound Interest = P(1+r/100)^n - P"></textarea>
+      </div>
+      <div class="note-block">
+        <h3>🌍 GK Facts</h3>
+        <textarea data-note="gk" placeholder="e.g. Battle of Plassey — 1757"></textarea>
+      </div>
+      <div class="note-block">
+        <h3>📖 Vocabulary</h3>
+        <textarea data-note="vocab" placeholder="e.g. Ephemeral — lasting a short time"></textarea>
+      </div>
+      <div class="note-block">
+        <h3>⚠️ Mistakes Log</h3>
+        <textarea data-note="mistakes" placeholder="e.g. Confused Permutation with Combination in Q14"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION: STATISTICS ============ -->
+  <section class="panel is-hidden" id="stats">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Sitrep</p>
+        <h2 class="panel-head__title">Statistics</h2>
+      </div>
+    </div>
+
+    <div class="grid-stats grid-stats--four">
+      <div class="stat-card"><div class="stat-card__label">Overall Completion</div><div class="stat-card__big" id="s_overall">0%</div></div>
+      <div class="stat-card"><div class="stat-card__label">Maths Completion</div><div class="stat-card__big" id="s_maths">0%</div></div>
+      <div class="stat-card"><div class="stat-card__label">English Completion</div><div class="stat-card__big" id="s_english">0%</div></div>
+      <div class="stat-card"><div class="stat-card__label">GK Completion</div><div class="stat-card__big" id="s_gk">0%</div></div>
+    </div>
+    <div class="grid-stats grid-stats--four">
+      <div class="stat-card"><div class="stat-card__label">Mock Tests Done</div><div class="stat-card__big" id="s_mocks">0</div></div>
+      <div class="stat-card"><div class="stat-card__label">Best Mock Score</div><div class="stat-card__big" id="s_best">--</div></div>
+      <div class="stat-card"><div class="stat-card__label">Study Streak</div><div class="stat-card__big" id="s_streak">0</div></div>
+      <div class="stat-card"><div class="stat-card__label">Days Left</div><div class="stat-card__big" id="s_days">--</div></div>
+    </div>
+
+    <div class="weekly-bars" id="weeklyBars"></div>
+
+    <div class="reset-zone">
+      <button class="btn btn--ghost" id="resetBtn">Reset All Progress</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="hull-footer">
+  <span>🎯 Stay Focused</span><span>📖 Stay Consistent</span><span>📈 Stay Positive</span><span>🏆 Make It Happen</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
